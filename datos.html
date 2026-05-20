@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Infografía: Educación Rural en Chile | Datos 2024-2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #FDF9F0 0%, #FEF7E8 100%);
+            font-family: 'Montserrat', sans-serif;
+            padding: 40px 24px;
+            color: #1E262C;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Encabezado */
+        .header-infografia {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .badge {
+            background: #F2C94C;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #1E262C;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: clamp(28px, 5vw, 52px);
+            font-weight: 800;
+            color: #1E262C;
+        }
+        h1 span {
+            color: #F2C94C;
+            background: linear-gradient(135deg, #F2C94C, #E0B13A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .sub {
+            font-size: 16px;
+            color: #5A5A5A;
+            max-width: 650px;
+            margin: 12px auto 0;
+        }
+
+        /* Pestañas */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .tab-btn {
+            background: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #5A5A5A;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            border: 1px solid #E9E0CE;
+        }
+        .tab-btn i { margin-right: 8px; }
+        .tab-btn.active {
+            background: #F2C94C;
+            color: #1E262C;
+            border-color: #F2C94C;
+            box-shadow: 0 6px 14px rgba(242,201,76,0.3);
+        }
+        .tab-btn:hover:not(.active) {
+            background: #FFF1CC;
+            border-color: #E0B13A;
+        }
+
+        /* contenido tabs */
+        .tab-panel {
+            display: none;
+            animation: fade 0.3s ease;
+        }
+        .tab-panel.active-panel {
+            display: block;
+        }
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Grid cards */
+        .grid-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px 22px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid rgba(242,201,76,0.3);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+            border-color: #F2C94C;
+        }
+        .card-icon {
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+        .card-value {
+            font-size: 44px;
+            font-weight: 800;
+            color: #1E262C;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .card-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #C69C3A;
+            letter-spacing: -0.2px;
+            margin-bottom: 12px;
+        }
+        .card-desc {
+            font-size: 14px;
+            color: #5A5A5A;
+            line-height: 1.5;
+            border-top: 1px solid #F0E5D2;
+            padding-top: 14px;
+            margin-top: 8px;
+        }
+        .highlight {
+            background: #FFF6E5;
+            border-left: 4px solid #F2C94C;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        /* Mapa simbólico regions */
+        .regions-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 30px 0 20px;
+        }
+        .region-badge {
+            background: #FEF2DE;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #3A4A3F;
+        }
+        .region-badge strong {
+            color: #C69C3A;
+        }
+
+        /* tabla simple */
+        .simple-table {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .simple-table th {
+            background: #FDF5E6;
+            padding: 14px 12px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #1E262C;
+            text-align: left;
+        }
+        .simple-table td {
+            padding: 12px;
+            border-bottom: 1px solid #F0E5D2;
+            font-size: 14px;
+            color: #2E2C2A;
+        }
+        .trend-up {
+            color: #2A7F49;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #A99F8A;
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #E9E0CE;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 24px 16px; }
+            .card-value { font-size: 36px; }
+            .tab-btn { padding: 8px 16px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-infografia">
+        <div class="badge">📊 DIAGNÓSTICO ACTUALIZADO · MINEDUC 2024-2025</div>
+        <h1>Educación Rural en Chile <span>en datos</span></h1>
+        <p class="sub">Distribución, vulnerabilidad, multigrado, aprendizajes y desafíos estructurales.<br>Fuentes: Villaseca (2025), Diálogos Rurales MINEDUC, JUNAEB, Agencia de Calidad.</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="tab1">🌾 Panorama general</button>
+        <button class="tab-btn" data-tab="tab2">📈 Vulnerabilidad & equidad</button>
+        <button class="tab-btn" data-tab="tab3">🏫 Multigrado / Docencia</button>
+        <button class="tab-btn" data-tab="tab4">📚 SIMCE & Trayectorias</button>
+        <button class="tab-btn" data-tab="tab5">🚜 Territorio & Comunidad</button>
+    </div>
+
+    <!-- PANEL 1: Panorama general -->
+    <div id="tab1" class="tab-panel active-panel">
+        <div class="grid-stats">
+            <div class="card"><div class="card-icon">🏫</div><div class="card-value">3.121</div><div class="card-label">escuelas rurales</div><div class="card-desc">29,3% del total nacional. Han disminuido un 11% desde 2017.</div></div>
+            <div class="card"><div class="card-icon">👧🏽</div><div class="card-value">273.935</div><div class="card-label">estudiantes rurales</div><div class="card-desc">7,9% de la matrícula total. Promedio de 12 alumnos por curso (vs 27 urbano).</div></div>
+            <div class="card"><div class="card-icon">👩‍🏫</div><div class="card-value">35.179</div><div class="card-label">docentes rurales</div><div class="card-desc">12,6% del país. 58% de las escuelas tienen “profesor encargado” en lugar de director.</div></div>
+            <div class="card"><div class="card-icon">🗺️</div><div class="card-value">4 regiones</div><div class="card-label">concentran +50%</div><div class="card-desc">Araucanía (18,5%), Los Lagos (15,5%), Maule (11,7%) y Coquimbo (9,5%).</div></div>
+        </div>
+        <div class="card"><div class="card-icon">📉</div><div class="card-value">23%</div><div class="card-label">escuelas sin postulaciones SAE 2024</div><div class="card-desc">Alta dispersión: en zonas extremas, 1 postulación cada 10 vacantes (Magallanes). Solo RM, Tarapacá y Arica tienen más postulaciones que vacantes.</div><div class="highlight">🔎 Demanda baja: 0,44 postulaciones por vacante (urbano 1,87).</div></div>
+    </div>
+
+    <!-- PANEL 2: Vulnerabilidad & equidad -->
+    <div id="tab2" class="tab-panel">
+        <div class="grid-stats">
+            <div class="card"><div class="card-icon">⚠️</div><div class="card-value">89,9%</div><div class="card-label">IVE Básica rural</div><div class="card-desc">vs 77,8% urbano. Brecha de +12 puntos. En Media: 90,1% vs 81,2%.</div><div class="highlight">📌 Araucanía: 95,7% (básica) / 96,2% (media)</div></div>
+            <div class="card"><div class="card-icon">🧑‍🌾</div><div class="card-value">37%</div><div class="card-label">escuelas con alta ascendencia indígena</div><div class="card-desc">Presencia de pueblos originarios, especialmente en regiones del sur. Además creciente migración internacional y campo-ciudad.</div></div>
+            <div class="card"><div class="card-icon">📉</div><div class="card-value">+5,4 p.p.</div><div class="card-label">expectativas parentales más bajas</div><div class="card-desc">En II° medio, más padres rurales esperan que sus hijos no continúen estudios superiores, controlando por nivel socioeconómico.</div></div>
+        </div>
+        <div class="simple-table">
+            <thead><tr><th>Región</th><th>IVE Básica rural</th><th>Brecha vs urbano (p.p.)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>La Araucanía</td><td>95,7%</td><td>+11,0</td></tr>
+                <tr><td>Los Ríos</td><td>93,8%</td><td>+10,3</td></tr>
+                <tr><td>Biobío</td><td>92,8%</td><td>+12,6</td></tr>
+                <tr><td>Maule</td><td>92,2%</td><td>+9,5</td></tr>
+                <tr><td>Promedio nacional</td><td>89,9%</td><td>+12,1</td></tr>
+            </tbody>
+        </div>
+        <div class="card"><div class="card-icon">🧳</div><div class="card-value">Migración como desafío</div><div class="card-label">Movilidad forzada y nueva ruralidad</div><div class="card-desc">Post-pandemia aumentó la matrícula rural por migración desde zonas urbanas. Además, llegada de estudiantes extranjeros demanda enfoque intercultural más allá del mundo indígena.</div></div>
+    </div>
+
+    <!-- PANEL 3: Multigrado / Docencia + condiciones estructurales -->
+    <div id="tab3" class="tab-panel">
+        <div class="grid-stats">
+            <div class="card"><div class="card-icon">📚</div><div class="card-value">21,1%</div><div class="card-label">alumnos en cursos multigrado</div><div class="card-desc">Prácticamente exclusivo de la ruralidad (urbano 0,3%). Combinan 1° a 8° básico en una misma aula.</div></div>
+            <div class="card"><div class="card-icon">👥</div><div class="card-value">45%</div><div class="card-label">escuelas uni, bi o tridocentes</div><div class="card-desc">De ellas, 12,1% son unidocentes. Alta complejidad para gestión curricular.</div></div>
+            <div class="card"><div class="card-icon">🏚️</div><div class="card-value">27%</div><div class="card-label">establecimientos aislados geográficamente</div><div class="card-desc">Problemas de conectividad, transporte y acceso a servicios básicos (agua, electricidad).</div></div>
+        </div>
+        <div class="card"><div class="card-icon">💰</div><div class="card-value">Subvención rural</div><div class="card-label">$190.579 por alumno (2023)</div><div class="card-desc">Vs $145.549 urbano. Sin embargo, solo el 31% de escuelas con menos de 17 alumnos recibe el piso rural. Existe déficit de recursos para equipos multidisciplinarios.</div><div class="highlight">⚠️ Desafíos clave: internados con mala evaluación (excepto familias beneficiarias), sobrecarga docente, falta de psicólogos y fonoaudiólogos.</div></div>
+        <div class="simple-table">
+            <tr><th>Indicador estructural</th><th>Percepción / dato</th></tr>
+            <tr><td>Transporte escolar rural (TER)</td><td>Insuficiente, muchas comunas sin cobertura</td></tr>
+            <tr><td>Conectividad digital</td><td>Limitada en zonas extremas; docentes improvisan recursos offline</td></tr>
+            <tr><td>Infraestructura</td><td>Deterioro, falta de patios techados, baños adaptados para párvulos</td></tr>
+        </div>
+    </div>
+
+    <!-- PANEL 4: SIMCE y trayectorias educativas -->
+    <div id="tab4" class="tab-panel">
+        <div class="grid-stats">
+            <div class="card"><div class="card-icon">📖</div><div class="card-value">-10,4 pts</div><div class="card-label">brecha en Lectura 4° básico</div><div class="card-desc">Rural obtiene ~260 vs urbano ~270 (SIMCE 2023). En Matemáticas -12 pts.</div></div>
+            <div class="card"><div class="card-icon">📉</div><div class="card-value">76,4%</div><div class="card-label">cobertura SIMCE 4° rural</div><div class="card-desc">Vs 86,2% urbano. Escuelas con menos de 5 alumnos tienen cobertura aún menor → sesgo de medición.</div></div>
+            <div class="card"><div class="card-icon">🎓</div><div class="card-value">48,1%</div><div class="card-label">acceso a educación superior</div><div class="card-desc">Vs 53,2% urbano. Pero +31,3% de crecimiento desde 2017 (3 de cada 4 nuevos ingresos van a universidad).</div></div>
+            <div class="card"><div class="card-icon">🚌</div><div class="card-value">70,1%</div><div class="card-label">migran a colegio urbano tras 8° básico</div><div class="card-desc">Sólo 30% permanece en educación rural para enseñanza media.</div></div>
+        </div>
+        <div class="highlight" style="background:#FFF1CC; margin-top: 8px;">📊 Asistencia: 90,2% en básica (rural) vs 87,7% urbano – mejor asistencia en escuelas rurales.</div>
+        <div class="card"><div class="card-icon">📈</div><div class="card-value">3.254 estudiantes</div><div class="card-label">accedieron a educación superior en 2023</div><div class="card-desc">Procedentes de colegios rurales. +776 estudiantes que en 2017. Sin embargo, brecha con urbano persiste (5,1 puntos).</div></div>
+    </div>
+
+    <!-- PANEL 5: Territorio, comunidad y política pública -->
+    <div id="tab5" class="tab-panel">
+        <div class="grid-stats">
+            <div class="card"><div class="card-icon">🤝</div><div class="card-value">Microcentros</div><div class="card-label">clave para el desarrollo profesional</div><div class="card-desc">Sin embargo, hoy funcionan con lógica burocrática y docentes jóvenes se desmotivan. Participaron 96 microcentros en los diálogos rurales 2023.</div></div>
+            <div class="card"><div class="card-icon">🗣️</div><div class="card-value">1.150 diálogos</div><div class="card-label">comunidades educativas</div><div class="card-desc">11.094 participantes: estudiantes, apoderados, docentes, asistentes. 168 mesas locales y 12 mesas técnicas.</div></div>
+            <div class="card"><div class="card-icon">🌎</div><div class="card-value">Política Nacional de Educación Rural</div><div class="card-label">en construcción (2024-2025)</div><div class="card-desc">Plan Gabriela Mistral + proceso participativo. Se busca nuevo enfoque territorial, definición ampliada de ruralidad y pertinencia curricular.</div></div>
+        </div>
+        <div class="simple-table">
+            <tr><th>Dimensiones priorizadas en los diálogos</th><th>Demandas más repetidas</th></tr>
+            <tr><td>Enfoque territorial</td><td>Repensar definición de escuela rural, superar visión solo demográfica.</td></tr>
+            <tr><td>Gestión pedagógica</td><td>Currículum urbanocéntrico, urge contextualización multigrado.</td></tr>
+            <tr><td>Formación docente</td><td>Perfil rural: “comunitario, empático, resolutivo”. Formación inicial y continua específica.</td></tr>
+            <tr><td>Condiciones estructurales</td><td>Conectividad, transporte, internados, acceso a salud y especialistas.</td></tr>
+        </div>
+        <div class="card"><div class="card-icon">📢</div><div class="card-value">Propuestas ciudadanas</div><div class="card-label">Indicadores de calidad propios para escuelas rurales</div><div class="card-desc">Reconocimiento del valor del multigrado, participación vinculante de las comunidades, y una hoja de ruta con enfoque territorial real.</div></div>
+    </div>
+
+    <!-- Bloque de frases finales -->
+    <div style="background: #1E262C; border-radius: 32px; padding: 32px 28px; margin-top: 48px; text-align: center; color: white;">
+        <p style="font-size: 18px; font-weight: 500; font-style: italic; max-width: 800px; margin: 0 auto;">📢 “La emancipación de la escuela rural aún no ha llegado” — pero los datos nos muestran el camino: <span style="color: #F2C94C;">visibilizar, territorializar y fortalecer redes.</span></p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 28px;">
+            <div><span style="font-weight:800; font-size:28px; color:#F2C94C;">3.121</span><br>escuelas rurales</div>
+            <div><span style="font-weight:800; font-size:28px; color:#F2C94C;">89,9%</span><br>IVE básica rural</div>
+            <div><span style="font-weight:800; font-size:28px; color:#F2C94C;">21%</span><br>multigrado</div>
+            <div><span style="font-weight:800; font-size:28px; color:#F2C94C;">+31%</span><br>acceso a Ed. Superior (2017-23)</div>
+        </div>
+    </div>
+
+    <footer>
+        Fuentes: Panorama de la educación rural en Chile, Manuel Villaseca Vial (2025) · Resumen Ejecutivo Diálogos Rurales MINEDUC, Universidad de Chile (2024) · JUNAEB, SIMCE, SAE. Datos actualizados a 2024-2025. Infografía con fines pedagógicos.
+    </footer>
+</div>
+
+<script>
+    // tabs
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    function activateTab(tabId) {
+        panels.forEach(panel => {
+            panel.classList.remove('active-panel');
+            if (panel.id === tabId) panel.classList.add('active-panel');
+        });
+        tabs.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
+        });
+    }
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            activateTab(tabId);
+        });
+    });
+
+    // pequeño efecto de hover en cards ya está en CSS
+</script>
+</body>
+</html>
